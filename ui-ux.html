@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Info Projek UI/UX Coder</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffeef8 0%, #e8f5ff 100%);
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* === HEADER === */
+    .header {
+      background: linear-gradient(135deg, #ffd6e8 0%, #ffe9f2 100%);
+      border-radius: 30px;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(255, 182, 224, 0.3);
+      margin-bottom: 30px;
+      animation: fadeInDown 0.6s ease;
+    }
+
+    .header h1 {
+      color: #ff6b9d;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    }
+
+    .deadline-badge {
+      display: inline-block;
+      background: #fff0f6;
+      color: #ff6b9d;
+      padding: 12px 24px;
+      border-radius: 20px;
+      margin: 10px 0;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
+    }
+
+    /* === CARD === */
+    .card {
+      background: white;
+      border-radius: 25px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid;
+    }
+
+    .card-icon {
+      font-size: 1.8em;
+      margin-right: 10px;
+    }
+
+    .card-title {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: bold;
+    }
+
+    /* === WARNA CARD === */
+    .pink-card { border-left: 5px solid #ffb3d9; }
+    .pink-card .card-header { border-color: #ffb3d9; color: #ff6b9d; }
+
+    .blue-card { border-left: 5px solid #a8d8ff; }
+    .blue-card .card-header { border-color: #a8d8ff; color: #5ba3d0; }
+
+    .purple-card { border-left: 5px solid #d4c5f9; }
+    .purple-card .card-header { border-color: #d4c5f9; color: #9370db; }
+
+    .yellow-card { border-left: 5px solid #fff4b3; }
+    .yellow-card .card-header { border-color: #fff4b3; color: #f0ad4e; }
+
+    .green-card { border-left: 5px solid #b8e6d5; }
+    .green-card .card-header { border-color: #b8e6d5; color: #5cb85c; }
+
+    .peach-card { border-left: 5px solid #ffd4b3; }
+    .peach-card .card-header { border-color: #ffd4b3; color: #ff9966; }
+
+    /* === LIST === */
+    .content-list {
+      list-style: none;
+    }
+
+    .content-list li {
+      padding: 10px 0 10px 30px;
+      position: relative;
+      font-size: clamp(0.9rem, 2.3vw, 1rem);
+    }
+
+    .content-list li:before {
+      content: "🌸";
+      position: absolute;
+      left: 0;
+    }
+
+    .example-list li:before {
+      content: "✨";
+    }
+
+    /* === TABLE === */
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 15px 0;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      font-size: clamp(0.85rem, 2vw, 1rem);
+    }
+
+    th {
+      background: #ffd9ed;
+      color: #ff6b9d;
+      padding: 12px;
+      text-align: left;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #ffe4f1;
+      background: #fffbfe;
+    }
+
+    tr:hover td {
+      background: #fff0f6;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 15px;
+    }
+
+    /* === CALLOUT === */
+    .callout {
+      background: #fff9e6;
+      border-left: 5px solid #ffd700;
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+    }
+
+    /* === FAQ === */
+    .faq {
+      margin-top: 10px;
+    }
+
+    .faq-item {
+      background: #f9f0ff;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #9370db;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: #666;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 15px 20px;
+      max-height: 400px;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    .highlight {
+      background: #ffeb99;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    /* === FOOTER === */
+    .footer {
+      text-align: center;
+      padding: 25px;
+      color: #ff6b9d;
+      font-weight: bold;
+      animation: fadeInUp 0.6s ease;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    /* === ANIMASI === */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === RESPONSIVE BREAKPOINTS === */
+    @media (max-width: 600px) {
+      body { padding: 15px; }
+      .header { padding: 30px 15px; }
+      .card { padding: 15px; }
+      .card-header { flex-direction: column; align-items: flex-start; }
+      .card-icon { margin-bottom: 5px; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+        <h1>📋 Info Projek UI/UX Coder</h1>
+        <div class="deadline-badge">⏰ Deadline: Jumat, 28 November 2025, 23:59 WIB</div>
+        <p style="color: #ff6b9d; font-weight: 800;">Toleransi keterlambatan: 5 jam</p>
+        <p style="font-size: clamp(1rem, 2.8vw, 1.3rem); color: #5ba3d0; margin-top: 10px;">
+            <em>"Designing for Real Impact"</em>
+        </p>
+    </div>
+
+    <!-- Callout -->
+    <div class="callout">
+      <div class="callout-icon">📢</div>
+      <div>Kalau ada yang mau sekalian terkait ide P2MW-nya bisa yaa</div>
+    </div>
+
+    <div class="card pink-card">
+        <div class="card-header">
+            <div class="card-icon">🧭</div>
+            <div class="card-title">Tujuan Proyek</div>
+        </div>
+        <ul class="content-list">
+            <li>Melatih anggota menerapkan prinsip-prinsip <span class="highlight">User Interface (UI)</span> dalam desain aplikasi</li>
+            <li>Meningkatkan kemampuan anggota dalam membuat desain yang <span class="highlight">user-friendly</span> dan fungsional</li>
+            <li>Menumbuhkan kreativitas anggota dalam merancang solusi digital berdasarkan <span class="highlight">masalah nyata pengguna</span></li>
+            <li>Membiasakan anggota melakukan <span class="highlight">proses desain end-to-end</span>: dari ide → desain → prototipe → presentasi</li>
+        </ul>
+    </div>
+
+    <div class="card blue-card">
+        <div class="card-header">
+            <div class="card-icon">👥</div>
+            <div class="card-title">Ketentuan</div>
+        </div>
+        <ul class="content-list">
+            <li>Dikerjakan secara <strong>individu atau berdua</strong></li>
+            <li>Wajib membuat desain <strong>orisinal</strong>, tidak boleh menyalin dari template yang sudah ada tanpa modifikasi</li>
+        </ul>
+    </div>
+
+    <div class="card purple-card">
+        <div class="card-header">
+            <div class="card-icon">💡</div>
+            <div class="card-title">Topik / Tema Aplikasi</div>
+        </div>
+        <p style="margin-bottom: 15px;">Kalian bebas menentukan topik, dengan ketentuan:</p>
+        <ul class="content-list">
+            <li>Berhubungan dengan kebutuhan nyata (misal: kampus, komunitas, gaya hidup, edukasi, lingkungan)</li>
+            <li>Fokus pada penyelesaian masalah sederhana namun relevan</li>
+        </ul>
+        <p style="margin: 20px 0 10px 0; font-weight: bold; color: #9370db;">Contoh tema:</p>
+        <ul class="content-list example-list">
+            <li>Aplikasi peminjaman barang di kampus</li>
+            <li>App pengingat minum air & kesehatan</li>
+            <li>Aplikasi donasi atau berbagi makanan</li>
+            <li>App pengelolaan keuangan mahasiswa</li>
+            <li>Aplikasi komunitas belajar atau mentoring</li>
+        </ul>
+    </div>
+
+    <div class="card yellow-card">
+        <div class="card-header">
+            <div class="card-icon">🪄</div>
+            <div class="card-title">Output yang Harus Dikumpulkan</div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Komponen</th>
+                    <th>Deskripsi</th>
+                    <th>Format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Problem Statement & Target User</strong></td>
+                    <td>Penjelasan singkat tentang masalah dan siapa pengguna aplikasi</td>
+                    <td>Teks</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Ide & Konsep Aplikasi</strong></td>
+                    <td>Deskripsi singkat solusi yang diajukan</td>
+                    <td>Teks</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Desain Aplikasi (UI)</strong></td>
+                    <td>Tampilan minimal 3 navbar / page utama aplikasi</td>
+                    <td>Link Figma</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Prototipe Interaktif</strong></td>
+                    <td>Aplikasi dapat diklik dan menggambarkan alur utama penggunaan</td>
+                    <td>Link Figma prototype</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Presentasi Singkat</strong></td>
+                    <td>Ringkasan hasil proyek dan alasan desain</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card green-card">
+        <div class="card-header">
+            <div class="card-icon">🎨</div>
+            <div class="card-title">Kriteria Penilaian</div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspek</th>
+                    <th>Bobot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pemahaman Masalah & Tujuan</td>
+                    <td><strong>20%</strong></td>
+                    <td>Seberapa relevan dan jelas masalah yang diangkat</td>
+                </tr>
+                <tr>
+                    <td>Ide & Kreativitas</td>
+                    <td><strong>20%</strong></td>
+                    <td>Keunikan solusi dan kesesuaian dengan pengguna</td>
+                </tr>
+                <tr>
+                    <td>Desain Antarmuka (UI)</td>
+                    <td><strong>30%</strong></td>
+                    <td>Penerapan prinsip desain (warna, tipografi, konsistensi, layout)</td>
+                </tr>
+                <tr>
+                    <td>Usability / Kemudahan Digunakan</td>
+                    <td><strong>20%</strong></td>
+                    <td>Apakah desain mudah dipahami dan digunakan</td>
+                </tr>
+                <tr>
+                    <td>Presentasi & Prototipe</td>
+                    <td><strong>10%</strong></td>
+                    <td>Kemampuan menjelaskan ide & tampilan prototipe</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card peach-card">
+        <div class="card-header">
+            <div class="card-icon">🧩</div>
+            <div class="card-title">Ketentuan Teknis</div>
+        </div>
+        <ul class="content-list">
+            <li>Desain dibuat untuk tampilan <strong>mobile</strong></li>
+            <li>Gunakan <strong>komponen UI yang konsisten</strong> dan terstruktur</li>
+            <li>Sertakan nama tim & judul aplikasi pada setiap slide</li>
+            <li>Link prototipe harus dapat diakses publik (Figma: <em>share > anyone with the link can view</em>)</li>
+            <li>Pengumpulan melalui folder drive / platform yang ditentukan oleh pengajar</li>
+        </ul>
+    </div>
+
+    <div class="card pink-card">
+        <div class="card-header">
+            <div class="card-icon">🎭</div>
+            <div class="card-title">Ketentuan Figma</div>
+        </div>
+        <ul class="content-list">
+            <li>Terdapat <strong>1 page</strong> yang berisikan nama, deskripsi projek kalian. Di deskripsi itu jelaskan masalahnya apa dan solusinya apa</li>
+            <li>Desain <strong>UI/UX</strong> kalian tentunya</li>
+        </ul>
+    </div>
+
+    <div class="callout" style="background: linear-gradient(135deg, #ffe6f0 0%, #fff0f6 100%); border-color: #ff6b9d;">
+        <div class="callout-icon">🏆</div>
+        <div style="font-weight: bold; color: #ff6b9d;">Best Project akan dapat hadiah!</div>
+    </div>
+
+    <div class="card purple-card">
+        <div class="card-header">
+            <div class="card-icon">❓</div>
+            <div class="card-title">FAQ</div>
+        </div>
+        <div class="faq">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Presentasinya pakai PPT?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Tidak usah, langsung figma saja. Kalau memang ada yang mau ditambahkan keterangan atau teks-teks, di figmanya tambahkan saja page yang berisi teksnya.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Kapan presentasinya?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Nanti infonya nyusul ya, tapi tidak lebih 2 minggu dari deadline. Kemungkinan awal Desember atau akhir November.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Presentasinya offline atau online?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Nanti disesuaikan kesepakatan dan lihat kondisi.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Best project-nya berdasarkan apa?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Penilaian tertinggi dan jumlah bintang yang diperoleh. Rencana (semoga terealisasi) akan dipublish hasil projek kalian dan akan diminta bintang dari orang-orang. Entah nanti di-up di SG Coder atau bagaimana, masih belum matang konsep ini, menyesuaikan kondisi juga nanti apakah dari sosmed atau bagaimana.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Apa hadiah kalau jadi best project?</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Ini masih dirahasiakan. Diusahakan hadiahnya keren dan berkesan! 🎁
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+      <p style="font-size: 1.3em;">✨ Semangat mengerjakan proyeknya! ✨</p>
+      <p>Good luck & have fun designing! 🎨</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== faqItem) item.classList.remove('active');
+      });
+      faqItem.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
